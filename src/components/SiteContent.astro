@@ -1,0 +1,147 @@
+---
+import CardsView from "../components/CardsView.tsx";
+
+const cards = [
+  {
+    title: "Explore an Open World",
+    image: "/assets/game-info-panel-01.jpg",
+    description:
+      "The wizarding world awaits you. Freely roam Hogwarts, Hogsmeade, the Forbidden Forest, and the surrounding Overland area.",
+  },
+  {
+    title: "Be the Witch or Wizard You Want to be",
+    image: "/assets/game-info-panel-02.jpg",
+    description:
+      "Learn spells, brew potions, grow plants, and tend to magical beasts along your journey. Get sorted into your house, forge relationships, and master skills to become the witch or wizard you want to be.",
+  },
+  {
+    title: "Experience a New Wizarding World Adventure",
+    image: "/assets/game-info-panel-03.jpg",
+    description:
+      "Experience the wizarding world in an unexplored era to uncover a hidden truth from its past. Battle against trolls, Dark Wizards, goblins, and more as you face a dangerous villain threatening the fate of the wizarding world.",
+  },
+  {
+    title: "TITLE 4",
+    image: "/assets/game-info-panel-01.jpg",
+    description: "descripcion 4",
+  },
+  {
+    title: "TITLE 5",
+    image: "/assets/game-info-panel-01.jpg",
+    description: "descripcion 5",
+  },
+];
+---
+
+<section id="site-content">
+  <div class="trailer">
+    <img src="/assets/launch-trailer.jpg" alt="Hogwarts Legacy launch trailer - Watch the official game trailer showcasing magical gameplay" loading="lazy" />
+  </div>
+  <div class="description">
+    Hogwarts Legacy is an immersive, open-world action RPG set in the world
+    first introduced in the Harry Potter books. For the first time, experience
+    Hogwarts in the 1800s. Your character is a student who holds the key to an
+    ancient secret that threatens to tear the wizarding world apart. Now you can
+    take control of the action and be at the center of your own adventure in the
+    wizarding world. Your legacy is what you make of it.
+  </div>
+
+  <div class="cardsContainer">
+    <CardsView client:load cards={cards} />
+  </div>
+</section>
+
+<style>
+  section {
+    width: min(90%, 1200px);
+    margin: 0 auto;
+    color: var(--text-primary);
+    padding: clamp(1rem, 3vw, 2rem);
+  }
+  
+  .trailer {
+    margin-bottom: clamp(1.5rem, 4vw, 3rem);
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease-out forwards;
+    animation-delay: 0.2s;
+  }
+  
+  .trailer img {
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .trailer img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 32px rgba(255, 215, 0, 0.3);
+  }
+  
+  .description {
+    width: min(85%, 800px);
+    margin: 0 auto clamp(2rem, 5vw, 4rem);
+    text-align: center;
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    line-height: 1.8;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease-out forwards;
+    animation-delay: 0.4s;
+  }
+  
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .cardsContainer {
+    width: 100%;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease-out forwards;
+    animation-delay: 0.6s;
+  }
+  
+  /* Animation keyframes */
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    section {
+      width: 95%;
+      padding: 1rem 0.5rem;
+    }
+    
+    .description {
+      width: 95%;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+  }
+  
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .trailer,
+    .description,
+    .cardsContainer {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+    
+    .trailer img {
+      transition: none;
+    }
+    
+    .trailer img:hover {
+      transform: none;
+    }
+  }
+</style>

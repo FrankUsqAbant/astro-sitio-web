@@ -1,0 +1,182 @@
+/* Responsive Cards Grid */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  padding: clamp(2rem, 5vw, 6rem) clamp(1rem, 3vw, 2rem);
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.cardsView {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  padding: clamp(2rem, 5vw, 6rem) clamp(1rem, 3vw, 2rem);
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.card {
+  width: 100%;
+  min-height: 510px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-secondary);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Hover effect para desktop */
+@media (hover: hover) {
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(255, 165, 0, 0.2);
+  }
+}
+
+.card .image {
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  background-size: calc(100% - 20px) calc(100% - 30px);
+  position: relative;
+}
+
+.card .image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.card .title {
+  padding: 10px 0;
+  min-height: 95px;
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card .description {
+  text-align: center;
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  padding: 0 1rem 1rem;
+  line-height: 1.6;
+}
+
+/* Skeleton Loading Styles */
+.card.skeleton {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 215, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.skeleton-image {
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 215, 0, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-content {
+  padding: 1.5rem;
+}
+
+.skeleton-title {
+  height: 28px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 215, 0, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.skeleton-text {
+  height: 16px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 215, 0, 0.08) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+}
+
+.skeleton-text.short {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Responsive breakpoints */
+@media (max-width: 640px) {
+  .cardsView,
+  .cards-container {
+    grid-template-columns: 1fr;
+    padding: 2rem 1rem;
+  }
+
+  .card {
+    min-height: auto;
+  }
+
+  .card .title {
+    min-height: auto;
+    padding: 1rem 0.5rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .cardsView,
+  .cards-container {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+@media (min-width: 1025px) {
+  .cardsView,
+  .cards-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Disable animations for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-image,
+  .skeleton-title,
+  .skeleton-text {
+    animation: none;
+  }
+}

@@ -1,0 +1,150 @@
+---
+import type { faq } from "../types/types";
+
+interface Props {
+  item: faq;
+}
+const { item } = Astro.props;
+---
+
+<div class="faq-accordion">
+  <button class="faq-question" aria-expanded="false">
+    <span class="question-text">{item.question}</span>
+    <span class="icon" aria-hidden="true">+</span>
+  </button>
+  <div class="faq-answer">
+    <div class="answer-content">
+      <p>{item.response}</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .faq-accordion {
+    margin-bottom: 1rem;
+    border: 2px solid rgba(255, 215, 0, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+  }
+
+  .faq-accordion:hover {
+    border-color: rgba(255, 215, 0, 0.4);
+    box-shadow: 0 4px 16px rgba(255, 215, 0, 0.1);
+  }
+
+  .faq-question {
+    width: 100%;
+    padding: 1.5rem;
+    background: transparent;
+    border: none;
+    color: var(--color-gold);
+    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+    font-weight: 700;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .faq-question:hover {
+    background: rgba(255, 215, 0, 0.05);
+  }
+
+  .faq-question:focus {
+    outline: 2px solid var(--color-gold);
+    outline-offset: -2px;
+  }
+
+  .question-text {
+    flex: 1;
+  }
+
+  .icon {
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--color-gold);
+    transition: transform 0.3s ease;
+    line-height: 1;
+    min-width: 2rem;
+    text-align: center;
+  }
+
+  .faq-accordion.active .icon {
+    transform: rotate(45deg);
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .faq-accordion.active .faq-answer {
+    max-height: 500px;
+  }
+
+  .answer-content {
+    padding: 0 1.5rem 1.5rem;
+  }
+
+  .answer-content p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  @media (max-width: 640px) {
+    .faq-question {
+      padding: 1.25rem;
+    }
+
+    .icon {
+      font-size: 1.5rem;
+      min-width: 1.5rem;
+    }
+
+    .answer-content {
+      padding: 0 1.25rem 1.25rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .faq-accordion,
+    .faq-question,
+    .icon,
+    .faq-answer {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  // Add click event listeners to all FAQ buttons
+  document.querySelectorAll('.faq-question').forEach((button) => {
+    button.addEventListener('click', () => {
+      const accordion = button.closest('.faq-accordion');
+      const isActive = accordion?.classList.contains('active');
+      
+      // Close all other accordions (optional - comment out for multi-open behavior)
+      document.querySelectorAll('.faq-accordion').forEach((item) => {
+        if (item !== accordion) {
+          item.classList.remove('active');
+          item.querySelector('.faq-question')?.setAttribute('aria-expanded', 'false');
+        }
+      });
+      
+      // Toggle current accordion
+      if (accordion) {
+        accordion.classList.toggle('active');
+        button.setAttribute('aria-expanded', isActive ? 'false' : 'true');
+      }
+    });
+  });
+</script>

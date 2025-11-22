@@ -1,0 +1,94 @@
+---
+import type { MenuItem } from "../types/types";
+
+interface Props extends MenuItem {
+  isActive?: boolean;
+}
+
+const { title, url, icon, isActive = false } = Astro.props;
+---
+
+<li>
+  <a href={url} class:list={["nav-link", { active: isActive }]} aria-current={isActive ? 'page' : undefined}>
+    {title}
+  </a>
+</li>
+
+<style>
+  li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav-link {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(0.75rem, 2vw, 1.875rem) clamp(1rem, 3vw, 2.5rem);
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    white-space: nowrap;
+    position: relative;
+  }
+  
+  /* Underline effect */
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0.5rem;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+    transition: transform 0.3s ease;
+  }
+  
+  @media (hover: hover) {
+    .nav-link:hover {
+      color: var(--color-gold, #ffa500);
+      transform: scale(1.05);
+    }
+    
+    .nav-link:hover::after {
+      transform: translateX(-50%) scaleX(1);
+    }
+  }
+  
+  /* Active state */
+  .nav-link.active {
+    color: var(--color-gold, #ffa500);
+    font-weight: 600;
+  }
+  
+  .nav-link.active::after {
+    transform: translateX(-50%) scaleX(1);
+    background: var(--color-gold, #ffa500);
+    height: 3px;
+  }
+  
+  .nav-link:focus {
+    outline: 2px solid var(--color-gold, orange);
+    outline-offset: 2px;
+  }
+
+  img {
+    width: 32px;
+    height: auto;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    .nav-link {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.95rem;
+    }
+    
+    .nav-link::after {
+      bottom: 0.25rem;
+    }
+  }
+</style>
