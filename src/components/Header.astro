@@ -3,13 +3,13 @@
 
 <section>
   <video 
-    src="/assets/hero.mp4" 
+    src={import.meta.env.BASE_URL + "assets/hero.mp4"}
     autoplay 
     loop 
     muted
     playsinline
     preload="none"
-    poster="/assets/bg.webp"
+    poster={import.meta.env.BASE_URL + "assets/bg.webp"}
     aria-label="Hogwarts Legacy background video"
   >
     Your browser does not support the video tag.
@@ -18,7 +18,7 @@
   <div class="hero-content">
     <div class="logo">
       <img 
-        src="/assets/hero-logo.webp" 
+        src={import.meta.env.BASE_URL + "assets/hero-logo.webp"}
         alt="Hogwarts Legacy logo - An immersive open-world action RPG set in the Harry Potter wizarding world" 
         loading="eager" 
       />

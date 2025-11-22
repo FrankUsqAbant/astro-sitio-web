@@ -4,11 +4,11 @@ const { title } = Astro.props;
 
 <div class="titleContainer">
   <div>
-    <img src="/assets/title-decoration.webp" alt="Decorative magical flourish" role="presentation" loading="lazy" />
+    <img src={import.meta.env.BASE_URL + "assets/title-decoration.webp"} alt="Decorative magical flourish" role="presentation" loading="lazy" />
   </div>
   <h2>{title}</h2>
   <div>
-    <img src="/assets/title-decoration-bottom.webp" alt="Decorative magical flourish" role="presentation" loading="lazy" />
+    <img src={import.meta.env.BASE_URL + "assets/title-decoration-bottom.webp"} alt="Decorative magical flourish" role="presentation" loading="lazy" />
   </div>
 </div>
 
