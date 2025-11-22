@@ -7,12 +7,12 @@ const menuItems: MenuItem[] = [
   },
   {
     title: "FAQ",
-    url: import.meta.env.BASE_URL + "faq",
+    url: import.meta.env.BASE_URL + "/faq",
     icon: "",
   },
   {
     title: "Blog",
-    url: import.meta.env.BASE_URL + "blog",
+    url: import.meta.env.BASE_URL + "/blog",
     icon: "",
   },
 ];

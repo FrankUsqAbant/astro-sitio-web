@@ -22,7 +22,7 @@ const CardView = ({ title, description, image }: CardItem) => (
   <div className="card">
     <div className="image" style={{ backgroundImage: `url(${image})` }}>
       <img
-        src={import.meta.env.BASE_URL + "assets/game-info-frame-a.webp"}
+        src={import.meta.env.BASE_URL + "/assets/game-info-frame-a.webp"}
         alt=""
         role="presentation"
         loading="lazy"

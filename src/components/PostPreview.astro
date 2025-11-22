@@ -6,7 +6,7 @@ const { post } = Astro.props;
 
 <div>
   <a href={post.url}>
-    <img src={import.meta.env.BASE_URL + post.frontmatter.image.url.replace(/^\//, '')} alt={post.frontmatter.image.alt || post.frontmatter.title} loading="lazy" />
+    <img src={import.meta.env.BASE_URL + "/" + post.frontmatter.image.url.replace(/^\//, '')} alt={post.frontmatter.image.alt || post.frontmatter.title} loading="lazy" />
     <div class="title">
       {post.frontmatter.title}
     </div>
