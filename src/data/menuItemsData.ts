@@ -2,17 +2,17 @@ import type { MenuItem } from "../types/types";
 const menuItems: MenuItem[] = [
   {
     title: "Home",
-    url: "/",
+    url: import.meta.env.BASE_URL,
     icon: "",
   },
   {
     title: "FAQ",
-    url: "/faq",
+    url: import.meta.env.BASE_URL + "faq",
     icon: "",
   },
   {
     title: "Blog",
-    url: "/blog",
+    url: import.meta.env.BASE_URL + "blog",
     icon: "",
   },
 ];
